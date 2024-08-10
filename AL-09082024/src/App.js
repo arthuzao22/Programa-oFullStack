@@ -6,15 +6,18 @@ import { faker } from '@faker-js/faker';
 
 function App() {
   return (
-    <div className="ui feed">
-      <Evento/>
-      <Evento/>
-      <Evento/>
-      <Evento/>
-      <Evento/>
-      <Evento/>
-    </div>
+    className
   );
 }
+
+const objetos = [
+  { name: "Ana", likes: 20 },
+  {name: "Bruno", likes: 15},
+  {name: "Carlos", likes: 5},
+  {name: "Daniela", likes: 45},
+  {name: "Evandro", likes: 78}
+
+]
+
 
 export default App;

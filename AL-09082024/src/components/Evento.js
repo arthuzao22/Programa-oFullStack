@@ -2,7 +2,7 @@ import React from "react";
 import { faker } from '@faker-js/faker';
 
 
-const Evento = () => {
+const Evento = (props) => {
     return (
         <div className="event">
             <div className="label">
@@ -11,7 +11,7 @@ const Evento = () => {
             <div className="content">
             <div className="summary">
                 <a className="user">
-                {faker.name.firstName()}
+                {props.name}
                 </a> added you as a friend
                 <div className="date">
                 1 Hour Ago
@@ -19,12 +19,13 @@ const Evento = () => {
                 </div>
                 <div className="meta">
                 <a className="like">
-                    <i className="like icon"></i> 4 Likes
+                    <i className="like icon"></i> {props.likes} Likes
                 </a>
                 </div>
             </div>
         </div>
     );
 };
+
 
 export default Evento;
