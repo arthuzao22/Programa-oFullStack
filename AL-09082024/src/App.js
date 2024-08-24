@@ -1,38 +1,91 @@
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
+import React, { useState, useRef, useEffect } from 'react';
+
+// const MenorQue10 = ({cliques}) => {
+//   useEffect(() => {
+//     console.log(`Iniciado ${cliques}`);
+
+//     return (
+//       () => console.log(`Finalizado: ${cliques}`)
+//     );
+//   }, []);
+
+//   useEffect(() => {
+//     console.log(`(Cada) Iniciado ${cliques}`);
+
+//     return (
+//       () => console.log(`(Cada) Finalizado: ${cliques}`)
+//     );
+//   }, [cliques]);
+
+//   return <p>menor que 10...</p>;
+// }
+
+const App = () => {
+  const cliques = useRef(0);
+  const [atualizadoEm, setAtualizadoEm] = useState(Date.now());
+
+  //const menor10 = cliques < 10 ? <MenorQue10 cliques={cliques} /> : null;
+  return (
+    <div>
+      <h4>Clicou {cliques.current} vezes.</h4>
+      {/* {menor10} */}
+
+      <button onClick={() => { 
+        cliques.current = cliques.current + 1 
+        console.log(cliques.current);
+        }}>Clique
+      </button>
+
+      <button onClick={() => { 
+        setAtualizadoEm(Date.now());
+        }}>Mostrar
+      </button>
+    </div>
+  );
+};
+
+export default App;
+
+/*
 import logo from './logo.svg';
 import './App.css';
 import Evento from './components/Evento';
 import { faker } from '@faker-js/faker';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Spinner from './components/Spinner';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { feeds: [], carregado: false };
+const App = (props) => {
+  const [dados, setDados] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(`Carregando: ${carregando}`);
+      setCarregando(false);
+      setDados(objetos);
+    }, 2000);
+  },[]);
+  
+  if (carregando) {
+    return <Spinner />;
   }
 
-  render() {
-    if (!this.state.carregado) {
-      this.setState({ feeds: objetos, carregado: true });
-      return (<div>Carregando...</div>);
-    }
-
-    return (
-      <div className="ui feed">
-        {
-          this.state.feeds.map(x => {
-            return (<Evento 
-              nome={x.nome} 
-              likes={x.likes} 
-              mensagem={x.mensagem} 
-              fotoPerfil={x.fotoPerfil} 
-              tempo={x.tempo} 
-            />);
-          })
-        }
-      </div>
-    );
-  }
-}
+  return (<div className="ui feed">
+      {
+        dados.map(x => {
+          return (<Evento 
+            nome={x.nome} 
+            likes={x.likes} 
+            mensagem={x.mensagem} 
+            fotoPerfil={x.fotoPerfil} 
+            tempo={x.tempo} 
+          />);
+        })
+      }
+    </div>);
+};
 
 const objetos = [
   { 
@@ -73,3 +126,4 @@ const objetos = [
 ];
 
 export default App;
+*/
